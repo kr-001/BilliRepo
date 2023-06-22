@@ -11,6 +11,10 @@ import { RetrieveUsersComponent } from './retrieve-users/retrieve-users.componen
 import { DeleteUsersComponent } from './delete-users/delete-users.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { LayoutComponent } from './layout/layout.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { UserListComponent } from './user-list/user-list.component';
     RetrieveUsersComponent,
     DeleteUsersComponent,
     RegistrationFormComponent,
-    UserListComponent
+    UserListComponent,
+    LoginComponent,
+    HomeComponent,
+    LayoutComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,

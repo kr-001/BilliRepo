@@ -9,28 +9,25 @@ import org.springframework.web.bind.annotation.*;
 import com.ComapnyUser.UserDetails.User.Details.model.User;
 import com.ComapnyUser.UserDetails.User.Details.service.UserService;
 
-
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
     @Autowired
     private UserService userService;
-    public String home() {
-        return "index"; // Replace "index" with the name of your home page view/template
-    }
+
     @GetMapping
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-   public ResponseEntity<User> getUserById(@PathVariable Long id) {
-    User user = userService.getUserById(id);
-    if (user == null) {
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        User user = userService.getUserById(id);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(user);
     }
-    return ResponseEntity.ok(user);
-}
 
     @PostMapping
     public User createUser(@RequestBody User user) {
@@ -41,16 +38,14 @@ public class UserController {
     public User updateUser(@PathVariable Long id, @RequestBody User user) {
         User existingUser = userService.getUserById(id);
         if (existingUser == null) {
-            // Handle the case where the user with the given ID doesn't exist
-            // You can return an appropriate error response or throw an exception
-            // For simplicity, let's assume we return null here
-            return null;
+            return null; // Handle the case where the user with the given ID doesn't exist
         }
 
         // Update the user object with the new values
-        existingUser.setFirstName(user.getFirstName());
-        existingUser.setLastName(user.getLastName());
+        existingUser.setFullName(user.getFullName());
+        existingUser.setLocation(user.getLocation());
         existingUser.setEmail(user.getEmail());
+        existingUser.setMobile(user.getMobile());
         existingUser.setPassword(user.getPassword());
 
         // Save the updated user
