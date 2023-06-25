@@ -33,7 +33,9 @@ public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
 
   // Authentication successful, generate JWT token or perform any other necessary operations
   // Return appropriate response, such as success message or token
-  LoginResponse response = new LoginResponse("Login successful");
+  LoginResponse response = new LoginResponse("Authentication successful!");
+  response.setId(user.getId());
+  response.setMessage("Login successful!");
   return ResponseEntity.ok(response);
 }
 

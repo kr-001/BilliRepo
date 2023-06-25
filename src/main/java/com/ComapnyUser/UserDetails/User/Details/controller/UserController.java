@@ -30,8 +30,17 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+          String email = user.getEmail();
+
+            // Check if user with the same email already exists
+        if (userService.existsByEmail(email)) {
+            return ResponseEntity.badRequest().body("Email already exists");
+        }
+
+        // Proceed with user creation
+        User createdUser = userService.createUser(user);
+        return ResponseEntity.ok(createdUser);
     }
 
     @PutMapping("/{id}")
@@ -56,4 +65,5 @@ public class UserController {
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
+    
 }

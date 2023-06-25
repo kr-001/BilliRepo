@@ -58,10 +58,13 @@ export class UserListComponent implements OnInit {
   deleteUser(userId: number) {
     this.userService.deleteUser(userId).subscribe(
       () => {
+        
         console.log('User deleted successfully');
+        location.reload();
         // Refresh the user list or perform any other necessary actions
       },
       (error: any) => {
+        
         console.error('Error deleting user:', error);
       }
     );

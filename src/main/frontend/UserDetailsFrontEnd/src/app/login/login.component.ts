@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent {
   password: string = '';
   invalidCredentials: boolean = false; // Declare invalidCredentials property
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router , private authService : AuthService) { }
 
   onSubmit() {
     if (this.email && this.password) {
@@ -27,16 +28,16 @@ export class LoginComponent {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       };
 
-      this.http.post('http://localhost:8080/api/login', loginData, httpOptions)
+      this.http.post<any>('http://localhost:8080/api/login', loginData, httpOptions)
       .pipe(
         catchError((error: HttpErrorResponse) => {
+          
           console.error('Error logging in:', error);
           return throwError(error);
         })
       )
       .subscribe(response => {
-        console.log('User logged in successfully:', response);
-        this.router.navigate(['/home']); // Navigate to HomeComponent
+        this.authService.login(this.email, this.password);
       }, error => {
         console.error('Invalid credentials:', error);
         this.invalidCredentials = true;
@@ -44,4 +45,5 @@ export class LoginComponent {
     
     }
   }
+  
 }

@@ -68,7 +68,7 @@
         transform: translateX(calc(100% - 100px));
       }
       100% {
-        transform: translateX(0);
+        transform: translateX(0) scaleX(-1);
       }
     }
   </style>
@@ -81,6 +81,7 @@
     <button class="landing-button mx-2" (click)="navigateTo('/register')">Register</button>
     <button class="landing-button mx-2" (click)="navigateTo('/login')">Login</button>
     <button class="landing-button mx-2" (click)="navigateTo('/users')">Users</button>
+    <button class="landing-button mx-2 " (click)="navigateTo('/admin')">Admin Login</button>"
   </div>
   <div class="cat-animation">
     <img src="https://orig00.deviantart.net/b8e9/f/2015/257/3/2/cat_walking_animation_by_blackrozepetal-d99laup.gif" alt="Cat Animation">

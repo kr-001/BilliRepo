@@ -12,13 +12,13 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 const routes: Routes = [
-  { path: 'update-user/id', component: UpdateUserComponent },
+  { path: 'update-user/:id', component: UpdateUserComponent },
   { path: 'retrieve', component: RetrieveUsersComponent },
   { path: 'delete', component: DeleteUsersComponent },
   { path: 'register', component: RegistrationFormComponent },
   { path: 'users', component: UserListComponent },
   {path: 'login', component: LoginComponent},
-  { path: 'home/:email', component: HomeComponent },
+  { path: 'home/:id', component: HomeComponent },
   { path: '', component: LandingPageComponent },
 
 ];

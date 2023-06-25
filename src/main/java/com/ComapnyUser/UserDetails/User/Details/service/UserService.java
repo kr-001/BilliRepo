@@ -29,6 +29,9 @@ public class UserService {
      public User getUserByEmail(String email) {
     return userRepository.findByEmail(email);
   }
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
 
     public User updateUser(User userData) {
         User existingUser = userRepository.findById(userData.getId()).orElse(null);
